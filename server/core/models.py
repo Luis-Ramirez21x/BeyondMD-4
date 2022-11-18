@@ -4,7 +4,8 @@ from django.contrib.auth.models import (
     BaseUserManager,
     PermissionsMixin,
 )
-
+from datetime import datetime
+from django.conf import settings
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -38,9 +39,40 @@ class User(AbstractBaseUser, PermissionsMixin):
     image_url = models.CharField(max_length=200)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    tickets = models.ManyToManyField('Ticket')
     """add ticket field once we get that test"""
 
     objects = UserManager()
 
     """define field we want to use for auth"""
     USERNAME_FIELD = 'email'
+
+class Ticket (models.Model):
+    issued_by = models.ForeignKey( settings.AUTH_USER_MODEL , on_delete=models.DO_NOTHING)
+    ticket_type = models.CharField(max_length=50)
+    description = models.TextField(max_length=1000)
+    is_highPriority = models.BooleanField(default=False)
+    is_open = models.BooleanField(default=True)
+    issued_date = models.DateTimeField(default=datetime.now)
+    comments = models.ManyToManyField('Comment')
+
+    def get_description(self):
+        str = self.description
+        str = str.capitalize()
+        if str == "":                    
+            return str
+        if str[-1] in ["?", ".", "!"]:   
+            return str
+        if str[-1] == ",":               
+            return str[:-1] + "."
+        return str + "."     
+       
+class Comment (models.Model):
+    issued_by = models.ForeignKey( settings.AUTH_USER_MODEL , on_delete=models.DO_NOTHING)
+    text = models.TextField(max_length=1000)
+    issued_date = models.DateTimeField(default=datetime.now)
+
+    def get_text(self):
+        str = self.text
+        str = str.lower()
+        return str
