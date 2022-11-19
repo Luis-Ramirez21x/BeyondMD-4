@@ -5,15 +5,21 @@ from django.contrib.auth import (
 from django.utils.translation import gettext as _
 from rest_framework import serializers
 
+"""
 
+add nested ticket serializer for populting tickets on all tickets api call!
+
+
+"""
 
 class UserSerializer(serializers.ModelSerializer):
     """Serializer for the user object
-        allows json to be used as pythonObject or model in this case    
+        allows json to be used as pythonObject or model in this case   
+        handles logic 
     """
     class Meta:
         model = get_user_model()
-        fields = ['email', 'password', 'name']
+        fields = ['email', 'password', 'name','image_url', 'tickets']
         extra_kwargs = {'password': {'write_only': True, 'min_length': 5}}
 
     def create(self, validated_data):
