@@ -25,11 +25,17 @@ class TicketViewSet(viewsets.ModelViewSet):
         """
         serializer.save(issued_by=self.request.user)
 
-class CommentViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet):
+class CommentViewSet(mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin, viewsets.GenericViewSet, mixins.CreateModelMixin):
     serializer_class = serializers.CommentSerializer
     queryset = Comment.objects.all()
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    def perform_create(self, serializer):
+        
+        serializer.save(issued_by=self.request.user)
+
+    
+
 
     
 

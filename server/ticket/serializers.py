@@ -12,6 +12,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = ['id', 'issued_by', 'text', 'issued_date']
         read_only_fields = ['id','issued_date', 'issued_by']
 
+
 class TicketsSerializer(serializers.ModelSerializer):
     """Serializer for Tickets"""
     comments = CommentSerializer(many=True, required = False)

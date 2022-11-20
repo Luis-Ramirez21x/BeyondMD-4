@@ -40,7 +40,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     tickets = models.ManyToManyField('Ticket', blank=True)
-    """add ticket field once we get that test"""
+    
 
     objects = UserManager()
 
