@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Profile from "../dashboard/profile";
 import TicketTable from "../dashboard/tickets/ticketTable";
 import CreateTicket from "../dashboard/tickets/createTicket";
+import RandomFacts from "../dashboard/facts";
 
 
 
@@ -51,40 +52,56 @@ export default function StaffDasboard({userData}){
                 >
                 <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                     <Grid container spacing={3}>
-                    {/* Profile Info */}
-                    <Grid item xs={12} md={4} lg={3}>
-                        <Paper
-                        sx={{
-                            p: 2,
-                            display: 'flex',
-                            alignItems: 'Center',
-                            flexDirection: 'column',
-                            height: 240,
-                            color: '#6c9886'
-                        }}
-                        >
-                        <Profile userData={userData}/>
-                        </Paper>
-                    </Grid>
-                    {/* Company News Banner */}
-                    <Grid item xs={12} md={8} lg={9}>
-                        <Paper
-                        sx={{
-                            p: 2,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            height: 240,
-                        }}
-                        >
-                        <CreateTicket userData={userData}/>
-                        </Paper>
-                    </Grid>
-                    {/* Tickets */}
-                    <Grid item xs={12}>
-                        <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <TicketTable tickets={tickets}/>
-                        </Paper>
-                    </Grid>
+                        {/* random facts banner */}
+                        <Grid item xs={12} md={12} lg={12}>
+                            <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                alignItems: 'Center',
+                                flexDirection: 'row',
+                                flexWrap:'wrap',
+                                justifyContent:'space-around',
+                                color: '#6c9886'
+                            }}
+                            >
+                            <RandomFacts/>
+                            </Paper>
+                        </Grid>
+                        {/* Profile Info */}
+                        <Grid item xs={12} md={4} lg={3}>
+                            <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                alignItems: 'Center',
+                                flexDirection: 'column',
+                                height: 240,
+                                color: '#6c9886'
+                            }}
+                            >
+                            <Profile userData={userData}/>
+                            </Paper>
+                        </Grid>
+                        {/* Company News Banner */}
+                        <Grid item xs={12} md={8} lg={9}>
+                            <Paper
+                            sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: 240,
+                            }}
+                            >
+                            <CreateTicket userData={userData}/>
+                            </Paper>
+                        </Grid>
+                        {/* Tickets */}
+                        <Grid item xs={12}>
+                            <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                            <TicketTable tickets={tickets}/>
+                            </Paper>
+                        </Grid>
                     </Grid>
                     
                 </Container>

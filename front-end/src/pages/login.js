@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@mui/material'
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Link} from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 
 import axios from 'axios'
-import auth from '../../util/auth';
+import auth from '../util/auth';
 
 
 export default function Login() {
@@ -87,9 +87,16 @@ export default function Login() {
               >
                 Login
               </Button>
-              <Grid container justifyContent="flex-end">
-
+              <Grid container>
+                  <Grid item>
+                      <Link href="/" variant="body2" style={{color:'#6c9886'}}>
+                        {"Don't have an account? Sign Up!"}
+                      </Link>
+                  </Grid>
               </Grid>
+
+
+              
             </Box>
           </Box>
           

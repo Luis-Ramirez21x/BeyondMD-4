@@ -7,7 +7,7 @@ class AuthService {
   loggedIn() {
     // Checks if there is a saved token and it's still valid
     const token = this.getToken();
-    return !!token && !this.isTokenExpired(token); // handwaiving here
+    return token ? true : false 
   }
 
   getToken() {
@@ -25,7 +25,7 @@ class AuthService {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
     // this will reload the page and reset the state of the application
-    window.location.assign('/');
+    window.location.assign('/login');
   }
 }
 

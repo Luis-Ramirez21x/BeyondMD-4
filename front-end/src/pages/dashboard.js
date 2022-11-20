@@ -6,6 +6,8 @@ import StaffDasboard from "../components/staff/staffDashBoard";
 import '../components/dashboard/dashboard.css'
 
 
+    
+
  
 export default function Dashboard(){
     const [userData, setData] = useState();
@@ -14,11 +16,14 @@ export default function Dashboard(){
     axios.defaults.headers.common['Authorization'] = "Token " + token
     
     useEffect(() => {
-        
-        axios.get('http://localhost:8000/api/user/me/')
-        .then( res => setData(res.data) )
-        .catch( error => console.log(error) )
-        .finally( () => setLoading(false) )
+        if(auth.loggedIn()) {
+            axios.get('http://localhost:8000/api/user/me/')
+            .then( res => setData(res.data) )
+            .catch( error => console.log(error) )
+            .finally( () => setLoading(false) )
+        }else {
+            window.location.assign('/login')
+        }
 
     }, [])
 
@@ -31,7 +36,7 @@ export default function Dashboard(){
     
     return(
         <>
-            {userData.isAdmin == true ? <AdminDasboard userData={userData}/> 
+            {userData?.isAdmin === true ? <AdminDasboard userData={userData}/> 
             :
             <StaffDasboard userData={userData}/>
             }

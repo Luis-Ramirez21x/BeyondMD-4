@@ -1,4 +1,6 @@
-import {Table, TableBody, TableCell, TableHead, TableRow} from '@mui/material'
+import {Table, TableBody, TableCell, TableHead, TableRow, Link} from '@mui/material'
+import formatDate from '../../../util/utils'
+import LaunchIcon from '@mui/icons-material/Launch';
 
 
 
@@ -20,20 +22,26 @@ export default function TicketTable({tickets}){
                     <TableCell>Type</TableCell>
                     <TableCell>Priority</TableCell>
                     <TableCell>Status</TableCell>
-                    <TableCell># Comments</TableCell>
+                    <TableCell></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {tickets.map((ticket) => (
-                        
-                    <TableRow key={ticket.id}>
-                        <TableCell>{ticket.issued_date}</TableCell>
-                        <TableCell>{ticket.ticket_type}</TableCell>
-                        <TableCell>{ticket.is_highPriority == true ? 'High' : 'Low'}</TableCell>
-                        <TableCell>{ticket.is_open == true ? 'Open' : 'Closed'}</TableCell>
-                        <TableCell>{(ticket.comments).length}</TableCell>
-                        
-                    </TableRow>
+                    
+                        <TableRow key={ticket.id}>
+                            
+                            <TableCell>{formatDate(ticket.issued_date)}</TableCell>
+                            <TableCell>{ticket.ticket_type}</TableCell>
+                            <TableCell>{ticket.is_highPriority == true ? 'High' : 'Low'}</TableCell>
+                            <TableCell>{ticket.is_open == true ? 'Open' : 'Closed'}</TableCell>
+                            <TableCell>
+                                <Link href={`/ticket/${ticket.id}`}>
+                                    <LaunchIcon/>
+                                </Link>
+                            </TableCell>
+                            
+                        </TableRow>
+                    
                     ))}
                 </TableBody>
             </Table>

@@ -1,4 +1,5 @@
 import { Table } from "@mui/material";
+import formatDate from "../../../util/utils";
 import './ticket.css'
 
 
@@ -16,7 +17,7 @@ export default function TicketDetails({ticketData}){
             <tbody className="ticket-info-table">
                 <tr>
                     <td className="td-header">Ticket-Number:</td>
-                    <td> {id}</td>
+                    <td># {id}</td>
                 </tr>
                 <tr>
                     <td className="td-header">Ticket-Type:</td>
@@ -24,18 +25,26 @@ export default function TicketDetails({ticketData}){
                 </tr>
                 <tr>
                     <td className="td-header">Status:</td>
-                    <td> {is_open == true ? 'Open' : 'Closed'}</td>
+                    {
+                     is_open === true ? <td style={{color:'red', fontWeight:'bold'}}>Open</td> 
+                     :
+                     <td style={{color:'green', fontWeight:'bold'}}>Closed</td> 
+                     }
                 </tr>
                 <tr>
                     <td className="td-header">Priority:</td>
-                    <td> {is_highPriority == true ? 'High' : 'Low'}</td>
+                    {
+                     is_highPriority === true ? <td style={{color:'red', fontWeight:'bold'}}>High</td> 
+                     :
+                     <td style={{color:'blue', fontWeight:'bold'}}>Low</td> 
+                     }
                 </tr>
                 <tr>
                     <td className="td-header">Created:</td>
-                    <td> {issued_date}</td>
+                    <td> {formatDate(issued_date)}</td>
                 </tr>
                 <tr>
-                    <td className="td-header">Description</td>
+                    <td className="td-header">Description:</td>
                     <td> {description}</td>
                 </tr>
             </tbody>

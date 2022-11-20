@@ -9,8 +9,8 @@ export default function Profile({userData}){
     
     return(
         <>
-            <img src={image_url} className="profile-pic" />
-            <h3>{name}</h3>
+            <img src={image_url} className="profile-pic" alt='cat' />
+            <h3>Welcome {name}</h3>
             <h5>{email}</h5>
             
         </>

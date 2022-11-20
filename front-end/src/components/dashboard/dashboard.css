@@ -3,3 +3,11 @@
     width:200px;
     border-radius: 100px;
 }
+
+.news-header{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
