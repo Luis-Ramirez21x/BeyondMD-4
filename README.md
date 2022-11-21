@@ -2,7 +2,11 @@
 
 CatWorx Issue-Tracker is an app that allows you to submit Tickets or 'software bugs' so as to be able to keep track of what needs to be worked on!
 
-API Used: https://docs.thecatapi.com/
+API's Used: 
+
+https://docs.thecatapi.com/
+
+https://meowfacts.herokuapp.com/
 
 ## Installation
 
