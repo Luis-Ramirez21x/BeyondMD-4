@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  server:
+    build: ./server
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/server/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  front-end:
+    build: ./front-end
+    ports:
+    - "3000:3000"

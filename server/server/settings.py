@@ -88,10 +88,11 @@ WSGI_APPLICATION = 'server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'issuetrackerdb',
+        'NAME': 'postgres',
         'USER': 'postgres',
-        'PASSWORD':'Reactjs74123',
-        'HOST': 'localhost'
+        'PASSWORD' : 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
@@ -146,3 +147,7 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
 }
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]
